@@ -7,4 +7,4 @@ or just download the jar and world, and do your own stuff with it.
 # Usage
 - /startgame - This is used to start the Game.
 - /stopgame - This is used to stop the Game, which still has to be used after finish.
-- /colour - You can change your block colour with this
+- /colour - You can change your block colour with this.
