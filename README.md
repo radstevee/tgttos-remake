@@ -8,3 +8,5 @@ or just download the jar and world, and do your own stuff with it.
 - /startgame - This is used to start the Game.
 - /stopgame - This is used to stop the Game, which still has to be used after finish.
 - /colour - You can change your block colour with this.
+
+The map was not built by me, but by [MickeyKat](https://www.planetminecraft.com/member/mickeykat/) on PlanetMinecraft. The whole map can be found [here](https://www.planetminecraft.com/project/tgttos-skydive-practise-map/).
