@@ -1,0 +1,14 @@
+name: tgttos
+version: '1.0.0'
+main: net.radsteve.tgttos.Main
+api-version: 1.19
+commands:
+  stopgame:
+    description: Stops the game
+    usage: /stopgame
+  startgame:
+    description: Starts the game
+    usage: /startgame
+  colour:
+    description: 'Select your colour. Available colours are: red, orange, yellow, lime, green, cyan, aqua, blue, purple and pink'
+    usage: /colour <colour>
