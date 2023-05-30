@@ -9,4 +9,19 @@ or just download the jar and world, and do your own stuff with it.
 - /stopgame - This is used to stop the Game, which still has to be used after finish.
 - /colour - You can change your block colour with this.
 
-The map was not built by me, but by [MickeyKat](https://www.planetminecraft.com/member/mickeykat/) on PlanetMinecraft. The whole map can be found [here](https://www.planetminecraft.com/project/tgttos-skydive-practise-map/).
+The Skydive map was not built by me, but by [MickeyKat](https://www.planetminecraft.com/member/mickeykat/) on PlanetMinecraft. The whole map can be found [here](https://www.planetminecraft.com/project/tgttos-skydive-practise-map/).
+
+
+# Things that work right now
+Base game
+Chickens
+Timer
+
+# Things that don't work right now
+Multiplayer
+
+Anyone other than me playing
+
+Scoreboard
+
+Other maps
