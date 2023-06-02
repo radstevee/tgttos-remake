@@ -19,9 +19,9 @@ public class Colour implements CommandExecutor {
         }
         Player player = Bukkit.getPlayer(sender.getName());
         String[] colours = {"red", "orange", "yellow", "lime", "green", "cyan", "aqua", "blue", "purple", "pink"};
-        if(args.length != 1 || !Arrays.stream(colours).anyMatch(args[0]::equals)) {
+        if (args.length != 1 || !Arrays.stream(colours).anyMatch(args[0]::equalsIgnoreCase)) {
             String currentColour = Main.getPlugin(Main.class).getConfig().getString(player.getName() + ".colour");
-            if(currentColour != null) {
+            if (currentColour != null) {
                 sender.sendMessage("Your currently selected colour is " + currentColour);
             }
             sender.sendMessage("Available colours are: red, orange, yellow, lime, green, cyan, aqua, blue, purple and pink");

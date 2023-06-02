@@ -1,6 +1,7 @@
 package net.radsteve.tgttos;
 
 import net.radsteve.tgttos.commands.Colour;
+import net.radsteve.tgttos.commands.SelectMap;
 import net.radsteve.tgttos.commands.StartGame;
 import net.radsteve.tgttos.commands.StopGame;
 import net.radsteve.tgttos.handlers.ChickenHandler;
@@ -8,39 +9,45 @@ import net.radsteve.tgttos.handlers.PlayerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 public final class Main extends JavaPlugin {
     public static boolean isRunning = false;
-    public static boolean isTimerRunning = false;
     public static Instant timer;
-    public static long timeElapsed = 0;
+    public static Collection<Player> players;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        Bukkit.getLogger().info("[tgttos] Initializing To get to the other side (and whack a fan!)");
+        saveDefaultConfig();
         getCommand("stopgame").setExecutor(new StopGame());
         getCommand("startgame").setExecutor(new StartGame());
         getCommand("colour").setExecutor(new Colour());
+        getCommand("selectmap").setExecutor(new SelectMap());
         new ChickenHandler(this);
         new PlayerHandler(this);
-        saveDefaultConfig();
+        Config.setDefaultConfig(this);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        if(PlayerHandler.placedBlocks != null) {
-            for(Location loc : PlayerHandler.placedBlocks) {
+        if (PlayerHandler.placedBlocks != null) {
+            for (Location loc : PlayerHandler.placedBlocks) {
                 loc.getBlock().setType(Material.AIR);
             }
         }
-        Bukkit.getLogger().warning("[tgttos] Shutting down To get to the other side (and whack a fan!)");
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (getConfig().getString(player.getName() + ".isFinished") != null) getConfig().set(player.getName(), "");
+        }
+        saveConfig();
+        Bukkit.getLogger().info("[tgttos] Shutting down TGTTOS");
     }
 
     public static boolean getRunning() {
@@ -52,13 +59,15 @@ public final class Main extends JavaPlugin {
     }
 
     public static void startTimer() {
+        for (Player player : players) {
+            Main.getPlugin(Main.class).setConfig(player.getName() + ".isFinished", "false");
+        }
         timer = Instant.now();
-        isTimerRunning = true;
     }
 
-    public static void stopTimer() {
-        timeElapsed = Duration.between(timer, Instant.now()).toMillis();
-        isTimerRunning = false;
+    public static void stopTimer(Player player) {
+        Main.getPlugin(Main.class).setConfig(player.getName() + ".isFinished", "true");
+        Main.getPlugin(Main.class).setConfig(player.getName() + ".time", Duration.between(timer, Instant.now()).toMillis());
     }
 
     public static long getTime() {
@@ -84,5 +93,4 @@ public final class Main extends JavaPlugin {
     public void setConfig(String key, Object val) {
         getConfig().set(key, val);
     }
-
 }

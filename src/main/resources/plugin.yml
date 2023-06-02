@@ -12,3 +12,6 @@ commands:
   colour:
     description: 'Select your colour. Available colours are: red, orange, yellow, lime, green, cyan, aqua, blue, purple and pink'
     usage: /colour <colour>
+  selectmap:
+    description: 'Select the map you want to play'
+    usage: /selectmap <map>
